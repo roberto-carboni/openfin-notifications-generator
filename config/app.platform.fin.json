@@ -1,0 +1,55 @@
+{
+  "devtools_port": 9090,
+  "licenseKey": "request-a-key",
+  "runtime": {
+    "arguments": "--v=1 --inspect",
+    "version": "stable"
+  },
+  "services": [
+    {
+      "name": "notifications"
+    }
+  ],
+  "platform": {
+    "uuid": "openfin-platform-notification-options-demo",
+    "applicationIcon": "https://pkxfb.csb.app/favicon.ico",
+    "autoShow": false
+  },
+  "snapshot": {
+    "windows": [
+      {
+        "defaultWidth": 650,
+        "defaultHeight": 800,
+        "defaultLeft": 0,
+        "defaultTop": 0,
+        "saveWindowState": false,
+        "backgroundThrottling": true,
+        "layout": {
+          "content": [
+            {
+              "type": "stack",
+              "width": 100,
+              "isClosable": true,
+              "reorderEnabled": true,
+              "title": "",
+              "activeItemIndex": 0,
+              "content": [
+                {
+                  "type": "component",
+                  "componentName": "view",
+                  "componentState": {
+                    "url": "https://pkxfb.csb.app/notification-options.html",
+                    "name": "component_1584387105285"
+                  },
+                  "isClosable": true,
+                  "reorderEnabled": true,
+                  "title": "Notifications Demo"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

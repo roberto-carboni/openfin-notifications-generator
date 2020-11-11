@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"
+    />
+    <script src="https://cdn.openfin.co/services/openfin/notifications/0.12.6/openfin-notifications.js"></script>
+    <script type="module" src="./js/notification-options.js"></script>
+    <title>Notification Options</title>
+    <style>
+    .drag {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+
+.nodrag {
+  -webkit-app-region: no-drag;
+}
+
+.all-notifications textarea {
+  height: 650px;
+  width: -webkit-fill-available;
+}
+</style>
+  </head>
+  <body class="dark" style="overflow:auto">
+    <ion-app>
+        <ion-header class="drag">
+            <ion-title>Notification Options Demo</ion-title>
+        </ion-header>
+      <ion-content>
+      
+        <p>
+          Set the options you wish to experiment with. More information about the notification service can be found by clicking <a href="https://cdn.openfin.co/docs/services/notifications/stable/api/index.html" target="_blank">here</a>.
+        </p>
+        <p> 
+          Version of notifications library: <span id="lib-version"></span>
+        </p>
+        <p> 
+            Version of notifications service: <span id="service-version"></span> (connected: <span id="service-connected"></span>)
+          </p>
+        <ion-item-group>
+          <ion-item-divider>
+            <ion-label>Notification Settings</ion-label>
+          </ion-item-divider>
+          <ion-item>
+            <ion-label position="fixed">Title</ion-label>
+            <ion-input id="notification-title" clear-input=true value="Notification Title To Show"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="fixed">Category</ion-label>
+            <ion-input id="notification-category" clear-input=true value="Demo Category"></ion-input>
+          </ion-item>
+            <ion-item>
+              <ion-label position="fixed">Body</ion-label>
+              <ion-textarea id="notification-body" rows="6" cols="20" value="Body of Notification with *markdown support* (with the exception of links & code blocks). ![Book](https://uploads.codesandbox.io/uploads/user/3284dfd1-a303-4a34-b155-878334bf1f99/hq0z-book.png)"></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-label position="fixed">Icon</ion-label>
+              <ion-input id="notification-icon" clear-input=true value="https://openfin.co/favicon.ico"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="fixed">Indicator</ion-label>
+              <ion-select id="indicator-type" value="" interface="popover">
+                <ion-select-option value="">No Indicator</ion-select-option>
+                <ion-select-option value="failure">Failure</ion-select-option>
+                <ion-select-option value="warning">Warning</ion-select-option>
+                <ion-select-option value="success">Success</ion-select-option>
+  =            </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>Show Custom Indicator Text?</ion-label>
+              <ion-toggle id="indicator-has-custom-text" checked="false"></ion-toggle>
+            </ion-item>
+            <ion-item id="indicator-custom-text-container">
+              <ion-label position="fixed">Indicator Text</ion-label>
+              <ion-input id="indicator-text" clear-input=true value=""></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Show Custom Display Date?</ion-label>
+              <ion-toggle id="notification-has-custom-display-date" checked="false"></ion-toggle>
+            </ion-item>
+            <ion-item id="notification-custom-display-date-container">
+              <ion-label position="fixed">Display Date</ion-label>
+              <ion-datetime id="notification-custom-display-date" display-format="D MMM YYYY H:mm" min="2020" max="2030" value="2020-12-17T11:06Z"></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-label>Include Custom Data?</ion-label>
+              <ion-toggle id="notification-has-custom-data" checked="false"></ion-toggle>
+            </ion-item>
+            <ion-item id="notification-custom-data-container">
+              <ion-label position="fixed">Custom Data</ion-label>
+              <ion-textarea id="notification-custom-data" rows="6" cols="20" value='{ "setting":"a key or piece of custom data for this notification"}'></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-label>Expire Notification?</ion-label>
+              <ion-toggle id="notification-expires" checked="false"></ion-toggle>
+            </ion-item>
+            <ion-item id="notification-expiry-date-container">
+              <ion-label position="fixed">Expiry Date</ion-label>
+              <ion-datetime id="notification-expiry-date" display-format="D MMM YYYY H:mm" min="2020" max="2030" value="2020-10-10T11:06Z"></ion-datetime>
+            </ion-item>
+            <ion-item id="add-expire-action-container">
+              <ion-label>Add Expire Action</ion-label>
+              <ion-toggle id="add-expire-action" checked="false"></ion-toggle>
+            </ion-item>
+          <ion-item>
+            <ion-label>Add Close Action</ion-label>
+            <ion-toggle id="add-close-action" checked="true"></ion-toggle>
+          </ion-item>
+          <ion-item>
+            <ion-label>Add Select Action</ion-label>
+            <ion-toggle id="add-select-action" checked="true"></ion-toggle>
+          </ion-item>
+    
+            <ion-item>
+                <ion-label>Add Custom Button 1</ion-label>
+                <ion-toggle id="add-custom-button-1" checked="false"></ion-toggle>
+              </ion-item>
+              <ion-item>
+                <ion-label>Add Custom Buttom 2</ion-label>
+                <ion-toggle id="add-custom-button-2" checked="false"></ion-toggle>
+              </ion-item>
+              <ion-item>
+                <ion-label>Add Custom Button 3</ion-label>
+                <ion-toggle id="add-custom-button-3" checked="false"></ion-toggle>
+              </ion-item>
+              <ion-item>
+                <ion-label>Add Custom Buttom 4</ion-label>
+                <ion-toggle id="add-custom-button-4" checked="false"></ion-toggle>
+              </ion-item>
+        </ion-item-group>
+
+        <ion-item-group id="button1-settings-container">
+          <ion-item-divider>
+            <ion-label>Button 1 Settings</ion-label>
+          </ion-item-divider>
+
+          <ion-item>
+            <ion-label position="fixed">Title</ion-label>
+            <ion-input id="button1-title" clear-input=true value="Button 1"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="fixed">Icon</ion-label>
+            <ion-input id="button1-icon" clear-input=true value="https://openfin.co/favicon.ico"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Type</ion-label>
+            <ion-select id="button1-type" value="button" interface="popover">
+              <ion-select-option value="button">Button</ion-select-option>
+=            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Add Click Action? (Otherwise clicking just dismisses the notification)</ion-label>
+            <ion-toggle id="button1-onclick" checked="false"></ion-toggle>
+          </ion-item>
+          <ion-item id="button1-data-container">
+            <ion-label position="float">onClick Data</ion-label>
+            <ion-textarea id="button1-data" rows="6" cols="20" value='{ "message":"entry 1 data to send back when this entry is clicked"}'></ion-textarea>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group id="button2-settings-container">
+          <ion-item-divider>
+            <ion-label>Button 2 Settings</ion-label>
+          </ion-item-divider>
+
+          <ion-item>
+            <ion-label position="fixed">Title</ion-label>
+            <ion-input id="button2-title" clear-input=true value="Button 2"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="fixed">Icon</ion-label>
+            <ion-input id="button2-icon" clear-input=true value="https://openfin.co/favicon.ico"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Type</ion-label>
+            <ion-select id="button2-type" value="button" interface="popover">
+              <ion-select-option value="button">Button</ion-select-option>
+=            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Add Click Action? (Otherwise clicking just dismisses the notification)</ion-label>
+            <ion-toggle id="button2-onclick" checked="false"></ion-toggle>
+          </ion-item>
+          <ion-item id="button2-data-container">
+            <ion-label position="float">onClick Data</ion-label>
+            <ion-textarea id="button2-data" rows="6" cols="20" value='{ "message":"entry 2 data to send back when this entry is clicked"}'></ion-textarea>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group id="button3-settings-container">
+          <ion-item-divider>
+            <ion-label>Button 3 Settings</ion-label>
+          </ion-item-divider>
+
+          <ion-item>
+            <ion-label position="fixed">Title</ion-label>
+            <ion-input id="button3-title" clear-input=true value="Button 3"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="fixed">Icon</ion-label>
+            <ion-input id="button3-icon" clear-input=true value="https://openfin.co/favicon.ico"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Type</ion-label>
+            <ion-select id="button3-type" value="button" interface="popover">
+              <ion-select-option value="button">Button</ion-select-option>
+=            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Add Click Action? (Otherwise clicking just dismisses the notification)</ion-label>
+            <ion-toggle id="button3-onclick" checked="false"></ion-toggle>
+          </ion-item>
+          <ion-item id="button3-data-container">
+            <ion-label position="float">onClick Data</ion-label>
+            <ion-textarea id="button3-data" rows="6" cols="20" value='{ "message":"entry 3 data to send back when this entry is clicked"}'></ion-textarea>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group id="button4-settings-container">
+          <ion-item-divider>
+            <ion-label>Button 4 Settings</ion-label>
+          </ion-item-divider>
+          <ion-item>
+            <ion-label position="fixed">Title</ion-label>
+            <ion-input id="button4-title" clear-input=true value="Button 4"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="fixed">Icon</ion-label>
+            <ion-input id="button4-icon" clear-input=true value="https://openfin.co/favicon.ico"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Type</ion-label>
+            <ion-select id="button4-type" value="button" interface="popover">
+              <ion-select-option value="button">Button</ion-select-option>
+=            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Add Click Action? (Otherwise clicking just dismisses the notification)</ion-label>
+            <ion-toggle id="button4-onclick" checked="false"></ion-toggle>
+          </ion-item>
+          <ion-item id="button4-data-container">
+            <ion-label position="float">onClick Data</ion-label>
+            <ion-textarea id="button4-data" rows="6" cols="20" value='{ "message":"entry 4 data to send back when this entry is clicked"}'></ion-textarea>
+          </ion-item>
+        </ion-item-group>
+
+        <ion-item-group>
+          <ion-item-divider>
+            <ion-label>Existing Notifications</ion-label>
+          </ion-item-divider>
+          <ion-item>
+            <ion-label>Show Existing Notifications (toggle to refresh)?</ion-label>
+            <ion-toggle id="show-all-notifications" checked="false"></ion-toggle>
+          </ion-item>
+          <ion-item id="all-notifications-data-container">
+            <ion-textarea id="all-notifications-data" rows="10" cols="20" value=""></ion-textarea>
+          </ion-item>
+        </ion-item-group>
+
+
+        <ion-item-group>
+            <ion-item-divider>
+              <ion-label>What should the code look like?</ion-label>
+            </ion-item-divider>
+            <ion-item>
+              <ion-label>I have npm installed openfin-notifications and I'm bundling (Webpack/Rollup/Etc)</ion-label>
+              <ion-toggle id="npm-install-and-bundle" checked="true"></ion-toggle>
+            </ion-item>
+        <ion-item>
+          <pre><code id="code">
+          </code></pre>
+        </ion-item>
+
+        <ion-item>
+          <ion-button fill="solid" id="create" name="create">Create</ion-button>
+          <ion-button fill="solid" id="clear-last" name="clear-last">Clear Last</ion-button>
+          <ion-button fill="solid" id="clear-all" name="clear-all">Clear All</ion-button>
+          <ion-button fill="solid" id="toggle-center" name="toggle-center">Toggle Center</ion-button>
+          <ion-button id="copycode" name="copycode">
+            <ion-label>Copy Code</ion-label><ion-icon slot="end" name="copy-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+      </ion-content>
+    </ion-app>
+  </body>
+</html>

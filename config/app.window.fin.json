@@ -1,0 +1,29 @@
+{
+  "devtools_port": 9090,
+  "licenseKey": "request-a-key",
+  "startup_app": {
+    "name": "OpenFin Window Notification Options Demo",
+    "description": "OpenFin Template",
+    "url": "https://pkxfb.csb.app/notification-options.html",
+    "uuid": "openfin-window-notification-options-demo",
+    "autoShow": true,
+    "applicationIcon": "https://pkxfb.csb.app/favicon.ico",
+    "defaultHeight": 800,
+    "defaultWidth": 650
+  },
+  "shortcut": {
+    "company": "OpenFin",
+    "description": "Demonstrates notification options",
+    "icon": "https://pkxfb.csb.app/favicon.ico",
+    "name": "OpenFin - Notifications Demo (Window Mode)",
+    "target": ["desktop", "start-menu", "automatic-start-up"]
+  },
+  "runtime": {
+    "version": "stable"
+  },
+  "services": [
+    {
+      "name": "notifications"
+    }
+  ]
+}
